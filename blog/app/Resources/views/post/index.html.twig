@@ -1,41 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Post list</h1>
+{% for post in posts %}
+<div class="blog-post">
+  <h2 class="blog-post-title">
+  <a href="{{path('_show', {'id': post.id})}}">
+    {{post.title}}</h2>
+  </a>
+  <p class="blog-post-meta">{{post.date|date('d.m.Y')}}
+    <a href="{{path('_edit', {'id': post.id})}}">Update</a>
+  </p>
+  <p>{{post.content}}</p>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for post in posts %}
-            <tr>
-                <td><a href="{{ path('_show', { 'id': post.id }) }}">{{ post.title }}</a></td>
-                <td>{{ post.content }}</td>
-                <td>{% if post.date %}{{ post.date|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('_show', { 'id': post.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('_edit', { 'id': post.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+</div><!-- /.blog-post -->
+  {% endfor %}
+  <nav>
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
+</nav>
 {% endblock %}
