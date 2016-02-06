@@ -10,18 +10,14 @@
                 <td>{{ post.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Content </th>
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
                 <th>Date</th>
                 <td>{% if post.date %}{{ post.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-        </tbody>
+          </tbody>
     </table>
 
     <ul>
