@@ -7,7 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Comment;
 use AppBundle\Form\PostType;
+
 
 /**
  * Post controller.
@@ -42,6 +44,8 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
+        
+
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
@@ -68,6 +72,8 @@ class PostController extends Controller
     public function showAction(Post $post)
     {
         $deleteForm = $this->createDeleteForm($post);
+      //  $comments = new Comment();
+      //  var_dump($comments);
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,

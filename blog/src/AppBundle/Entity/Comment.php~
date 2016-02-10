@@ -1,0 +1,129 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: oxana
+ * Date: 7.2.16
+ * Time: 13.59
+ */
+
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="Comments")
+ *@ORM\HasLifecycleCallbacks
+ */
+
+class Comment
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
+	protected $post;
+  /**
+     * @ORM\Column(type="text")
+     */
+  protected $content;
+
+  /**
+     * @ORM\Column(type="date")
+     */
+  protected $date;
+  /**
+     * @ORM\Column(type="string", length=100)
+     */
+  protected $author;
+
+
+
+    // /**
+    //  * Get id
+    //  *
+    //  * @return integer
+    //  */
+    // public function getId()
+    // {
+    //     return $this->id;
+    // }
+    //
+    // /**
+    //  * Set comment
+    //  *
+    //  * @param string $comment
+    //  *@ORM\PrePersist
+    //  * @return Comment
+    //  */
+    // public function setComment($comment)
+    // {
+    //     $this->comment = $comment;
+    //
+    //     return $this;
+    // }
+    //
+    // /**
+    //  * Get comment
+    //  *
+    //  * @return string
+    //  */
+    // public function getComment()
+    // {
+    //     return $this->comment;
+    // }
+    //
+    // /**
+    //  * Set postId
+    //  *
+    //  * @param integer $postId
+    //  *
+    //  * @return Comment
+    //  */
+    // public function setPostId($postId)
+    // {
+    //     $this->post_id = $postId;
+    //
+    //     return $this;
+    // }
+    //
+    // /**
+    //  * Get postId
+    //  *
+    //  * @return integer
+    //  */
+    // public function getPostId()
+    // {
+    //     return $this->post_id;
+    // }
+    //
+    // /**
+    //  * Set post
+    //  *
+    //  * @param \AppBundle\Entity\Post $post
+    //  *
+    //  * @return Comment
+    //  */
+    // public function setPost(\AppBundle\Entity\Post $post = null)
+    // {
+    //     $this->post = $post;
+    //
+    //     return $this;
+    // }
+    //
+    // /**
+    //  * Get post
+    //  *
+    //  * @return \AppBundle\Entity\Post
+    //  */
+    // public function getPost()
+    // {
+    //     return $this->post;
+    // }
+}

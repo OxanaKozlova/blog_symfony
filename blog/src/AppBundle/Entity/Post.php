@@ -1,9 +1,10 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
- * @ORM\Table(name="post")
+ * @ORM\Table(name="Posts")
  *@ORM\HasLifecycleCallbacks
  */
 class Post
@@ -31,6 +32,16 @@ class Post
     protected $id;
 
     /**
+		 * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+		 */
+	protected $comments;
+
+  public function __construct()
+	{
+			$this->comments = new ArrayCollection();
+	}
+
+      /**
      * Set title
      *
      * @param string $title
@@ -84,11 +95,11 @@ class Post
      * @param \DateTime $date
      *
      * @return Post
-     *@ORM\PrePersist
+     * @ORM\PrePersist
      */
-    public function setDate($date)
+    public function setDate()
     {
-        $this->date = new \DateTime('now');
+        $this->date =  new \DateTime('now');
 
         return $this;
     }
@@ -112,4 +123,43 @@ class Post
     {
         return $this->id;
     }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function __toString()
+		{
+				return (string)$this->id;
+		}
 }
