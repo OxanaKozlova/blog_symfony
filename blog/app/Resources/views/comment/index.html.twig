@@ -6,7 +6,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Content</th>
                 <th>Date</th>
                 <th>Author</th>
@@ -16,7 +15,6 @@
         <tbody>
         {% for comment in comments %}
             <tr>
-                <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
                 <td>{{ comment.content }}</td>
                 <td>{% if comment.date %}{{ comment.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ comment.author }}</td>
@@ -35,9 +33,10 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('comment_new', { 'post_id': post_id }) }}">Create a new entry</a>
-        </li>
-    </ul>
+    <div class="blog-post">
+      {{form_start(form)}}
+        {{form_widget(form)}}
+          <input class="btn btn-primary pull-right" type="submit" value="Comment" />
+    {{ form_end(form) }}
+    </div>
 {% endblock %}

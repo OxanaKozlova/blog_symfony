@@ -26,7 +26,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('comment_index', { 'post_id': comment.post}) }}">Back to the list</a>
+            <a href="{{ path('comment_index', {'post_id': comment.post.getId()}) }}">Back to the list</a>
         </li>
         <li>
             <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
