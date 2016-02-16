@@ -9,25 +9,14 @@
                 <th>Content</th>
                 <th>Date</th>
                 <th>Author</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for comment in comments %}
             <tr>
-                <td>{{ comment.content }}</td>
+                <td><a href="{{ path('comment_edit', { 'id': comment.id }) }}">{{ comment.content }}</a></td>
                 <td>{% if comment.date %}{{ comment.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ comment.author }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('comment_show', { 'id': comment.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -39,4 +28,4 @@
           <input class="btn btn-primary pull-right" type="submit" value="Comment" />
     {{ form_end(form) }}
     </div>
-{% endblock %}
+    {% endblock %}

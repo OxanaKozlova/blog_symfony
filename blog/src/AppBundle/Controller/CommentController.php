@@ -59,24 +59,6 @@ class CommentController extends Controller
 
 
 
-      // $comment = new Comment();
-      //  $form = $this->createForm('AppBundle\Form\CommentType', $comment);
-      //  $form->handleRequest($request);
-      //  $postId = $request->get('post_id');
-      //  $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($postId);
-      //  if ($form->isSubmitted() && $form->isValid()) {
-      //      $em = $this->getDoctrine()->getManager();
-      //      $comment->setPost($post);
-      //      $em->persist($comment);
-      //      $em->flush();
-      //      return $this->redirectToRoute('comment_index', array('post_id' => $postId));
-      //  }
-      //  return $this->render('comment/new.html.twig', array(
-      //      'comment' => $comment,
-      //      'form' => $form->createView(),
-      //  ));
-  //  }
-
     /**
      * Finds and displays a Comment entity.
      *
@@ -130,14 +112,14 @@ class CommentController extends Controller
     {
         $form = $this->createDeleteForm($comment);
         $form->handleRequest($request);
-
+        $postId = $comment->getPost()->getId();
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($comment);
             $em->flush();
         }
 
-        return $this->redirectToRoute('comment_index');
+        return $this->redirectToRoute('comment_index', array('post_id'=>$postId));
     }
 
     /**
