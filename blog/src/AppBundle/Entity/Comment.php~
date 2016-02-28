@@ -26,7 +26,7 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="CASCADE")
      */
 	protected $post;
   /**
@@ -35,7 +35,7 @@ class Comment
   protected $content;
 
   /**
-     * @ORM\Column(type="date")
+      *@ORM\Column(type="date" )
      */
   protected $date;
   /**
@@ -43,87 +43,110 @@ class Comment
      */
   protected $author;
 
+      /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Comment
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
 
-    // /**
-    //  * Get id
-    //  *
-    //  * @return integer
-    //  */
-    // public function getId()
-    // {
-    //     return $this->id;
-    // }
-    //
-    // /**
-    //  * Set comment
-    //  *
-    //  * @param string $comment
-    //  *@ORM\PrePersist
-    //  * @return Comment
-    //  */
-    // public function setComment($comment)
-    // {
-    //     $this->comment = $comment;
-    //
-    //     return $this;
-    // }
-    //
-    // /**
-    //  * Get comment
-    //  *
-    //  * @return string
-    //  */
-    // public function getComment()
-    // {
-    //     return $this->comment;
-    // }
-    //
-    // /**
-    //  * Set postId
-    //  *
-    //  * @param integer $postId
-    //  *
-    //  * @return Comment
-    //  */
-    // public function setPostId($postId)
-    // {
-    //     $this->post_id = $postId;
-    //
-    //     return $this;
-    // }
-    //
-    // /**
-    //  * Get postId
-    //  *
-    //  * @return integer
-    //  */
-    // public function getPostId()
-    // {
-    //     return $this->post_id;
-    // }
-    //
-    // /**
-    //  * Set post
-    //  *
-    //  * @param \AppBundle\Entity\Post $post
-    //  *
-    //  * @return Comment
-    //  */
-    // public function setPost(\AppBundle\Entity\Post $post = null)
-    // {
-    //     $this->post = $post;
-    //
-    //     return $this;
-    // }
-    //
-    // /**
-    //  * Get post
-    //  *
-    //  * @return \AppBundle\Entity\Post
-    //  */
-    // public function getPost()
-    // {
-    //     return $this->post;
-    // }
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Comment
+     * @ORM\PrePersist
+     */
+    public function setDate()
+    {
+        $this->date = new \DateTime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Comment
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Comment
+     */
+    public function setPost(\AppBundle\Entity\Post $post = null)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * Get post
+     *
+     * @return \AppBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
 }

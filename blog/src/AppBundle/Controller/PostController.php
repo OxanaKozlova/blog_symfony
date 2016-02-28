@@ -44,7 +44,7 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
-        
+
 
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
@@ -72,13 +72,10 @@ class PostController extends Controller
     public function showAction(Post $post)
     {
         $deleteForm = $this->createDeleteForm($post);
-      //  $comments = new Comment();
-      //  var_dump($comments);
-
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
-        ));
+          ));
     }
 
     /**
