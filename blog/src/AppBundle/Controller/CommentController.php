@@ -38,6 +38,11 @@ class CommentController extends Controller
            'post_id' => $postId,
            'form' => $form->createView(),
        ));
+
+       return json_encode(array(
+            'comments' => $comments,
+            'post_id' => $postId,
+        )); //for json
     }
 
     /**
@@ -55,6 +60,7 @@ class CommentController extends Controller
 
 
         return $this->redirectToRoute('comment_index', array('post_id' => $post->getId()));
+        return json_encode($post->getId()); //for json
     }
 
 
@@ -73,6 +79,10 @@ class CommentController extends Controller
             'comment' => $comment,
             'delete_form' => $deleteForm->createView(),
         ));
+        return json_encode(array(
+            'comment' => $comment,
+            'post_id' => $postId
+        )); //for json
     }
 
     /**
@@ -93,6 +103,7 @@ class CommentController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('comment_edit', array('id' => $comment->getId()));
+            return json_encode($comment->getId()); //for json
         }
 
         return $this->render('comment/edit.html.twig', array(
@@ -100,6 +111,7 @@ class CommentController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+         return json_encode($comment); //for json
     }
 
     /**
@@ -120,6 +132,7 @@ class CommentController extends Controller
         }
 
         return $this->redirectToRoute('comment_index', array('post_id'=>$postId));
+
     }
 
     /**
@@ -136,5 +149,6 @@ class CommentController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+        return json_encode($comment->getId()); //for json
     }
 }

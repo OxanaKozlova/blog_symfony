@@ -33,6 +33,7 @@ class PostController extends Controller
         return $this->render('post/index.html.twig', array(
             'posts' => $posts,
         ));
+        return json_encode($posts); //for json
     }
 
     /**
@@ -55,12 +56,14 @@ class PostController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('_show', array('id' => $post->getId()));
+            return json_encode($post->getId()); //for json
         }
 
         return $this->render('post/new.html.twig', array(
             'post' => $post,
             'form' => $form->createView(),
         ));
+        return json_encode($post); // for json
     }
 
     /**
@@ -76,6 +79,7 @@ class PostController extends Controller
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
           ));
+          return json_encode( $post); //for json
     }
 
     /**
@@ -96,6 +100,7 @@ class PostController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('_edit', array('id' => $post->getId()));
+            return json_encode($post->getId()); //for json
         }
 
         return $this->render('post/edit.html.twig', array(
@@ -103,6 +108,7 @@ class PostController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        return json_encode($post);//for json
     }
 
     /**
@@ -139,5 +145,6 @@ class PostController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+        return json_encode( $post->getId()); //for json
     }
 }
