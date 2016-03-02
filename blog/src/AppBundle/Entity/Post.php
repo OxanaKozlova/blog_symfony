@@ -31,6 +31,12 @@ class Post
      */
     protected $id;
 
+    
+    /**
+       * @ORM\Column(type="string", length=100)
+       */
+      protected $author;
+
     /**
 		 * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
 		 */
@@ -162,4 +168,28 @@ class Post
 		{
 				return (string)$this->id;
 		}
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Post
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 }

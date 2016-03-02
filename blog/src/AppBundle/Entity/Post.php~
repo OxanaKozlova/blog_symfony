@@ -31,6 +31,12 @@ class Post
      */
     protected $id;
 
+    
+    /**
+       * @ORM\Column(type="string", length=100)
+       */
+      protected $author;
+
     /**
 		 * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
 		 */

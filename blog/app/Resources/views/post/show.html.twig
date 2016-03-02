@@ -14,6 +14,10 @@
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
+            <th>Author</th>
+            <td>{{post.author}}</td>
+            </tr>
+            <tr>
                 <th>Date</th>
                 <td>{% if post.date %}{{ post.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
